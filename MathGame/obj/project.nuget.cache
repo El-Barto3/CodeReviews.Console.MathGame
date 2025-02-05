@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vE9vgnouFFwxHR2gl11pxwFo+QCrAJs/d7zjuj6eKx8ffofmmzOLHX27TE0EFjFKOxIAXOA1d6EbeGXlHHrvVQ==",
+  "dgSpecHash": "FsjYScNzgm9pfhhOJn3lmDFo3rnS6w4Xy7TyAwwv2YvapcyZK91w0j1JXVsi7dSpWjVF+o0HzVVmNsK8p9+5pQ==",
   "success": true,
-  "projectFilePath": "D:\\programowanie\\C#\\CodeAcademy\\freeCodeCamp\\MathGame\\MathGame\\MathGame.csproj",
+  "projectFilePath": "C:\\Users\\Barto\\Source\\Repos\\CodeReviews.Console.MathGame\\MathGame\\MathGame.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

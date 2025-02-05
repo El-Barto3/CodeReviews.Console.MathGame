@@ -1,6 +1,4 @@
 ﻿
-
-using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Net.Sockets;
@@ -9,7 +7,7 @@ int[] maxValueOfNumber = { 10, 30, 100 };
 int[] minValueOfNumber = { 1, 10, 30 };
 int[] minValueOfNumberForDivide = { 2, 2, 3 };
 string[] standardGames = ["ADDITION", "SUBSTRACTION", "MULTIPLICATION", "DIVISION"];
-string[] mainMenuStrings = ["STANDARD", "RANDOMIZER", "CHOOSE DIFFICULTY", "GAMES HISTORY"];
+string[] MainMenuStrings = ["STANDARD", "RANDOMIZER", "CHOOSE DIFFICULTY", "GAMES HISTORY"];
 string[] difficultiesLevel = ["EASY", "NORMAL", "HARD"];
 char[] opperands = ['+', '-', '*', '/'];
 var randomVar = new Random();
@@ -19,23 +17,23 @@ string[] gamesHistory = new string[10];
 Stopwatch gameTimer = new Stopwatch();
 
 
-void dividingHandler(ref int firstNumber,ref int secondNumber)
+void DividingHandler(ref int firstNumber,ref int secondNumber)
 {
     //can be prime, 0 or smaller than divider
-    while (isPrime(firstNumber))
+    while (IsPrime(firstNumber))
         firstNumber = randomVar.Next(minValueOfNumber[difficultyLevel], maxValueOfNumber[difficultyLevel]);
 
     //find divider that will give int outcome
     while (firstNumber % secondNumber != 0 || firstNumber == secondNumber || secondNumber == 1)
         secondNumber = randomVar.Next(minValueOfNumberForDivide[difficultyLevel], firstNumber - 1);
 }
-int enterWholeGame(int option)
+int EnterWholeGame(int option)
 {
     var pointsSum = 0;
     var mode = 0;
     if (option == 0)
     {
-        mode = showMenu(standardGames, "Choose your game:");
+        mode = ShowMenu(standardGames, "Choose your game:");
         if (mode == -1)
             return -1;
     }
@@ -44,15 +42,15 @@ int enterWholeGame(int option)
     for (int i = 0; i < gameLength; i++)
     {
         if (option == 0)
-            pointsSum += startBasicGame(mode, (i + 1), gameLength);
+            pointsSum += StartBasicGame(mode, (i + 1), gameLength);
         else if (option == 1)
-            pointsSum += startBasicGame((randomVar.Next() % standardGames.Length), (i + 1), gameLength);
+            pointsSum += StartBasicGame((randomVar.Next() % standardGames.Length), (i + 1), gameLength);
     }
 
     return pointsSum;
 }
 
-int findLastNonEmpty(string[] array)
+int FindLastNonEmpty(string[] array)
 {
     int lastIndex = -1;
     for (int i = array.Length - 1; i >= 0; i--)
@@ -65,7 +63,7 @@ int findLastNonEmpty(string[] array)
     }
     return lastIndex;
 }
-bool isPrime(int number)
+bool IsPrime(int number)
 {
     if(number <= 2)
         return true;
@@ -80,7 +78,7 @@ bool isPrime(int number)
     return true;
 }
 
-int startBasicGame(int selectedGame, int currentRound, int maxRounds)
+int StartBasicGame(int selectedGame, int currentRound, int maxRounds)
 {
     Console.Clear();
     Console.WriteLine($"Calculate this equation ({currentRound}/{maxRounds}):");
@@ -104,7 +102,7 @@ int startBasicGame(int selectedGame, int currentRound, int maxRounds)
             break;
         case 3:
             secondNumber = randomVar.Next(minValueOfNumberForDivide[difficultyLevel], maxValueOfNumber[difficultyLevel]);
-            dividingHandler(ref firstNumber, ref secondNumber);
+            DividingHandler(ref firstNumber, ref secondNumber);
             correctAnswer = firstNumber / secondNumber;
             break;
 
@@ -130,7 +128,7 @@ int startBasicGame(int selectedGame, int currentRound, int maxRounds)
 
 }
 
-int showMenu(string[] namesTable, string menuHeader, int selectedOption = 0)
+int ShowMenu(string[] namesTable, string menuHeader, int selectedOption = 0)
 {
     ConsoleKey clickedKey;
     do
@@ -179,19 +177,19 @@ int showMenu(string[] namesTable, string menuHeader, int selectedOption = 0)
 
 
 //menu for choosing mode of game
-void main()
+void Main()
 {
     int outcome;
     //making game in loop until user quits
     do
     {
-        //show main menu
-        outcome = showMenu(mainMenuStrings, "Navigate with arrows and use ESC to go back");
+        //show Main menu
+        outcome = ShowMenu(MainMenuStrings, "Navigate with arrows and use ESC to go back");
 
         //randomizer and standard game and saving to history handler
         if (outcome == 0 || outcome == 1)
         {
-            var playerPoints = enterWholeGame(outcome);
+            var playerPoints = EnterWholeGame(outcome);
 
             if (playerPoints == -1)
                 continue;
@@ -205,8 +203,8 @@ void main()
 
             var tempNumber = (indexOfEmpty + 1).ToString().PadRight(8);
             var tempDifficulty = (difficultiesLevel[difficultyLevel]).PadRight(16);
-            var tempMode = mainMenuStrings[outcome].PadRight(16);
-            var tempPoints = (playerPoints + "/" + gameLength).ToString().PadRight(16);
+            var tempMode = MainMenuStrings[outcome].PadRight(16);
+            var tempPoints = (playerPoints + "/" + gameLength).PadRight(16);
             var tempTime = String.Format("{0:00}:{1:00}:{2:00}", gameTimer.Elapsed.Hours, gameTimer.Elapsed.Minutes, gameTimer.Elapsed.Seconds);
 
             gamesHistory[indexOfEmpty] = tempNumber + tempDifficulty + tempMode + tempPoints + tempTime;
@@ -215,7 +213,7 @@ void main()
         //difficulty level
         if (outcome == 2)
         {
-            var newDifficulty = showMenu(difficultiesLevel, "Choose difficulty", difficultyLevel);
+            var newDifficulty = ShowMenu(difficultiesLevel, "Choose difficulty", difficultyLevel);
             difficultyLevel = newDifficulty != -1 ? newDifficulty : difficultyLevel;
 
         }   
@@ -223,12 +221,12 @@ void main()
         //games history panel
         if (outcome == 3)
         {
-            var lastValid = findLastNonEmpty(gamesHistory);
+            var lastValid = FindLastNonEmpty(gamesHistory);
             var historyMenuTitle = "Games history\n" + "No.".PadRight(8) + "Difficulty".PadRight(16) + "Mode".PadRight(16) + "Score".PadRight(16) + "Time";
 
-            showMenu(gamesHistory[0..(lastValid + 1)], historyMenuTitle, -1); //dont show choosing arrow and null elements when loaded
+            ShowMenu(gamesHistory[0..(lastValid + 1)], historyMenuTitle, -1); //dont show choosing arrow and null elements when loaded
         }
     } while (outcome != -1);
 }
 
-main();
+Main();

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\programowanie\\C#\\CodeAcademy\\freeCodeCamp\\MathGame\\MathGame\\MathGame.csproj",
+      "projectUniqueName": "C:\\Users\\Barto\\Source\\Repos\\CodeReviews.Console.MathGame\\MathGame\\MathGame.csproj",
       "projectName": "MathGame",
-      "projectPath": "D:\\programowanie\\C#\\CodeAcademy\\freeCodeCamp\\MathGame\\MathGame\\MathGame.csproj",
+      "projectPath": "C:\\Users\\Barto\\Source\\Repos\\CodeReviews.Console.MathGame\\MathGame\\MathGame.csproj",
       "packagesPath": "C:\\Users\\Barto\\.nuget\\packages\\",
-      "outputPath": "D:\\programowanie\\C#\\CodeAcademy\\freeCodeCamp\\MathGame\\MathGame\\obj\\",
+      "outputPath": "C:\\Users\\Barto\\Source\\Repos\\CodeReviews.Console.MathGame\\MathGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
